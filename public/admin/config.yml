@@ -1,7 +1,7 @@
 backend:
   name: github
   repo: stevengomez25/serverlesswebcommerce # Cambia por tu repo en GitHub
-  branch: main
+  branch: master
 
 # Ruta donde se guardará el contenido dentro del proyecto
 media_folder: "public/assets/uploads"
