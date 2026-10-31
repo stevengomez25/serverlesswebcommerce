@@ -2,14 +2,18 @@
   command = "npm run build"
   publish = "dist/blog-estatico/browser"
 
-# Esto le dice a Netlify: "Cuando alguien pida /admin, entrégale directamente el archivo /admin/index.html y no dejes que Angular lo toque"
+[[redirects]]
+  from = "/admin"
+  to = "/admin/index.html"
+  status = 200
+  force = true
+
 [[redirects]]
   from = "/admin/*"
   to = "/admin/index.html"
   status = 200
   force = true
 
-# Regla general para el resto de la app de Angular
 [[redirects]]
   from = "/*"
   to = "/index.html"
