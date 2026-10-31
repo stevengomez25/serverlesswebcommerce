@@ -1,0 +1,230 @@
+.header-nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  font-family: inherit;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-brand a {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #111;
+  text-decoration: none;
+  letter-spacing: -0.5px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #4b5563;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: #2563eb;
+}
+
+/* Dropdown / Mega Menu */
+.dropdown-wrapper {
+  position: relative;
+}
+
+.dropdown-toggle {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #4b5563;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0;
+  font-family: inherit;
+}
+
+.dropdown-toggle:hover {
+  color: #2563eb;
+}
+
+.arrow {
+  font-size: 0.75rem;
+  transition: transform 0.2s;
+}
+
+.arrow.rotate {
+  transform: rotate(180deg);
+}
+
+/* Minimodal Mega Menu */
+.mega-menu {
+  position: absolute;
+  top: calc(100% + 1rem);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  display: flex;
+  width: 480px;
+  border: 1px solid #f3f4f6;
+  overflow: hidden;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.mega-menu-categories {
+  width: 45%;
+  background-color: #f9fafb;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border-right: 1px solid #e5e7eb;
+}
+
+.mega-menu-categories button {
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  color: #4b5563;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.mega-menu-categories button:hover,
+.mega-menu-categories button.active {
+  background-color: #2563eb;
+  color: #ffffff;
+}
+
+.mega-menu-subcategories {
+  width: 55%;
+  padding: 1.5rem;
+}
+
+.mega-menu-subcategories h4 {
+  margin: 0 0 1rem 0;
+  font-size: 1.1rem;
+  color: #111827;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 0.5rem;
+}
+
+.mega-menu-subcategories ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.mega-menu-subcategories ul li a {
+  color: #4b5563;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+}
+
+.mega-menu-subcategories ul li a:hover {
+  color: #2563eb;
+  padding-left: 4px;
+}
+
+/* Acciones y Carrito */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cart-btn {
+  background: #f3f4f6;
+  border: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 1rem;
+  position: relative;
+}
+
+.hamburger-btn {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Responsividad para móviles */
+@media (max-width: 768px) {
+  .hamburger-btn {
+    display: block;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 70px;
+    left: -100%;
+    width: 100%;
+    height: calc(100vh - 70px);
+    background-color: #ffffff;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2rem;
+    gap: 1.5rem;
+    transition: left 0.3s ease-in-out;
+    box-shadow: 0 10px 15px rgba(0,0,0,0.05);
+    overflow-y: auto;
+  }
+
+  .nav-links.active {
+    left: 0;
+  }
+
+  .mega-menu {
+    position: static;
+    transform: none;
+    width: 100%;
+    box-shadow: none;
+    border: none;
+    flex-direction: column;
+    margin-top: 1rem;
+  }
+
+  .mega-menu-categories {
+    width: 100%;
+    flex-direction: row;
+    overflow-x: auto;
+  }
+
+  .mega-menu-subcategories {
+    width: 100%;
+    padding: 1rem 0;
+  }
+}

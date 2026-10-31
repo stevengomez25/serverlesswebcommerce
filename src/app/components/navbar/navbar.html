@@ -1,0 +1,75 @@
+<header class="header-nav">
+  <div class="nav-container">
+    
+    <!-- Logo / Marca -->
+    <div class="nav-brand">
+      <a href="#">Tienda de Flor</a>
+    </div>
+
+    <!-- Menú de Navegación Central (Desktop) -->
+    <nav class="nav-links" [class.active]="isMobileMenuOpen()">
+      <a href="#" (click)="toggleMobileMenu()">Inicio</a>
+
+      <!-- Opción con Minimarket / Mega Menú desplegable -->
+      <div class="dropdown-wrapper" (mouseleave)="closeDropdown()">
+        <button class="dropdown-toggle" (click)="toggleDropdown()" (mouseenter)="isDropdownOpen.set(true)">
+          ¿Qué ofrecemos? 
+          <span class="arrow" [class.rotate]="isDropdownOpen()">▼</span>
+        </button>
+
+        <!-- Minimodal / Mega Menú -->
+        @if (isDropdownOpen()) {
+          <div class="mega-menu">
+            <div class="mega-menu-categories">
+              <button 
+                [class.active]="categoriaHover() === 'Hombre'"
+                (mouseenter)="setHoverCategory('Hombre')"
+                (click)="setHoverCategory('Hombre')">
+                Hombre ➔
+              </button>
+              <button 
+                [class.active]="categoriaHover() === 'Mujer'"
+                (mouseenter)="setHoverCategory('Mujer')"
+                (click)="setHoverCategory('Mujer')">
+                Mujer ➔
+              </button>
+              <button 
+                [class.active]="categoriaHover() === 'Niños'"
+                (mouseenter)="setHoverCategory('Niños')"
+                (click)="setHoverCategory('Niños')">
+                Niños ➔
+              </button>
+            </div>
+
+            <!-- Subcategorías dinámicas según la categoría seleccionada en el hover -->
+            <div class="mega-menu-subcategories">
+              <h4>{{ categoriaHover() }}</h4>
+              <ul>
+                @for (sub of subcategoriasPorCategoria[categoriaHover()]; track sub) {
+                  <li><a href="#catalogo" (click)="closeDropdown(); isMobileMenuOpen.set(false)">{{ sub }}</a></li>
+                }
+              </ul>
+            </div>
+          </div>
+        }
+      </div>
+
+      <a href="#conocenos" (click)="toggleMobileMenu()">Conócenos</a>
+      <a href="#ayuda" (click)="toggleMobileMenu()">Ayuda</a>
+      <a href="#contacto" (click)="toggleMobileMenu()">Contacto</a>
+    </nav>
+
+    <!-- Iconos de Acceso / Carrito -->
+    <div class="nav-actions">
+      <button class="cart-btn" aria-label="Carrito de compras">
+        🛒 <span class="cart-badge">0</span>
+      </button>
+
+      <!-- Botón Menú Hamburguesa (Mobile) -->
+      <button class="hamburger-btn" (click)="toggleMobileMenu()" aria-label="Abrir menú">
+        ☰
+      </button>
+    </div>
+
+  </div>
+</header>
