@@ -1,0 +1,27 @@
+{
+  "items": [
+    {
+      "precio": 35000,
+      "slug": "cv000000001",
+      "colores": [
+        "Verde",
+        "Amarillo",
+        "Fucsia",
+        "negro"
+      ],
+      "categoria": "Hombre",
+      "subcategoria": "Camisas y Camisetas",
+      "stock": 300,
+      "title": "Camiseta veraniega",
+      "codigo": "cv000000001",
+      "image": "/assets/uploads/17128323622e1595b65a9d43ea92514bbf55c0b92c_thumbnail_750x999.jpg",
+      "description": "descripcion porfavor funcione ya me voa mataaaaaaaaaaaar",
+      "tallas": [
+        "W",
+        "M",
+        "XL",
+        "2XL"
+      ]
+    }
+  ]
+}
