@@ -2,6 +2,10 @@
   command = "npm run build"
   publish = "dist/blog-estatico/browser"
 
+# Desactiva plugins automáticos inyectados por Netlify
+[build.environment]
+  NETLIFY_EXPERIMENTAL_DISABLE_PLUGIN_INJECTION = "true"
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
