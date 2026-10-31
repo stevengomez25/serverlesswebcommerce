@@ -22,18 +22,11 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              },
-              {
-                "glob": "**/*",
-                "input": "admin",
-                "output": "/admin"
               }
             ],
-            "styles": ["src/styles.css"],
-            "security": {
-              "allowedHosts": []
-            }
-            
+            "styles": [
+              "src/styles.css"
+            ]
           },
           "configurations": {
             "production": {

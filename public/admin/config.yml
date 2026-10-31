@@ -1,9 +1,7 @@
 backend:
-  name: github
-  repo: stevengomez25/serverlesswebcommerce # Cambia por tu repo en GitHub
+  name: git-gateway
   branch: master
 
-# Ruta donde se guardará el contenido dentro del proyecto
 media_folder: "public/assets/uploads"
 public_folder: "/assets/uploads"
 
@@ -13,7 +11,7 @@ collections:
     folder: "src/assets/data/articulos"
     create: true
     slug: "{{slug}}"
-    format: "json" # Usamos JSON para procesarlo fácilmente en Angular
+    format: "json"
     fields:
       - { label: "Título", name: "title", widget: "string" }
       - { label: "Slug", name: "slug", widget: "string" }
