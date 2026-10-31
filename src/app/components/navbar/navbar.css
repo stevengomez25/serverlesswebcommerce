@@ -42,8 +42,10 @@
 }
 
 /* Dropdown / Mega Menu */
+/* Contenedor que agrupa el botón y el menú para mantener el hover vivo */
 .dropdown-wrapper {
   position: relative;
+  /* Eliminamos el mouseleave de JS y dejamos que CSS controle el puente */
 }
 
 .dropdown-toggle {
@@ -56,7 +58,7 @@
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  padding: 0;
+  padding: 0.5rem 0; /* Un poco de área vertical para el cursor */
   font-family: inherit;
 }
 
@@ -73,25 +75,40 @@
   transform: rotate(180deg);
 }
 
-/* Minimodal Mega Menu */
+/* Minimodal Mega Menu con puente invisible de hover */
 .mega-menu {
   position: absolute;
-  top: calc(100% + 1rem);
+  top: 100%; /* Justo debajo del contenedor, sin espacio vacío en blanco */
   left: 50%;
   transform: translateX(-50%);
+  padding-top: 10px; /* Crea un puente invisible para que el cursor no pierda el hover al viajar */
+  background: transparent; /* El fondo real va en el contenido interno */
+  display: flex;
+  width: 480px;
+  animation: fadeIn 0.2s ease-in-out;
+  z-index: 100;
+}
+
+/* Contenido real del menú con la tarjeta blanca y sombra */
+.mega-menu-content {
   background: #ffffff;
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
   display: flex;
-  width: 480px;
+  width: 100%;
   border: 1px solid #f3f4f6;
   overflow: hidden;
-  animation: fadeIn 0.2s ease-in-out;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateX(-50%) translateY(10px); }
-  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
 }
 
 .mega-menu-categories {
@@ -199,7 +216,7 @@
     padding: 2rem;
     gap: 1.5rem;
     transition: left 0.3s ease-in-out;
-    box-shadow: 0 10px 15px rgba(0,0,0,0.05);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
     overflow-y: auto;
   }
 

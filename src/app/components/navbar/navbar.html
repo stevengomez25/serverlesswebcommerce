@@ -18,37 +18,40 @@
         </button>
 
         <!-- Minimodal / Mega Menú -->
+        <!-- Minimodal / Mega Menú -->
         @if (isDropdownOpen()) {
-          <div class="mega-menu">
-            <div class="mega-menu-categories">
-              <button 
-                [class.active]="categoriaHover() === 'Hombre'"
-                (mouseenter)="setHoverCategory('Hombre')"
-                (click)="setHoverCategory('Hombre')">
-                Hombre ➔
-              </button>
-              <button 
-                [class.active]="categoriaHover() === 'Mujer'"
-                (mouseenter)="setHoverCategory('Mujer')"
-                (click)="setHoverCategory('Mujer')">
-                Mujer ➔
-              </button>
-              <button 
-                [class.active]="categoriaHover() === 'Niños'"
-                (mouseenter)="setHoverCategory('Niños')"
-                (click)="setHoverCategory('Niños')">
-                Niños ➔
-              </button>
-            </div>
+          <div class="mega-menu" (mouseenter)="isDropdownOpen.set(true)" (mouseleave)="closeDropdown()">
+            <div class="mega-menu-content">
+              <div class="mega-menu-categories">
+                <button 
+                  [class.active]="categoriaHover() === 'Hombre'"
+                  (mouseenter)="setHoverCategory('Hombre')"
+                  (click)="setHoverCategory('Hombre')">
+                  Hombre ➔
+                </button>
+                <button 
+                  [class.active]="categoriaHover() === 'Mujer'"
+                  (mouseenter)="setHoverCategory('Mujer')"
+                  (click)="setHoverCategory('Mujer')">
+                  Mujer ➔
+                </button>
+                <button 
+                  [class.active]="categoriaHover() === 'Niños'"
+                  (mouseenter)="setHoverCategory('Niños')"
+                  (click)="setHoverCategory('Niños')">
+                  Niños ➔
+                </button>
+              </div>
 
-            <!-- Subcategorías dinámicas según la categoría seleccionada en el hover -->
-            <div class="mega-menu-subcategories">
-              <h4>{{ categoriaHover() }}</h4>
-              <ul>
-                @for (sub of subcategoriasPorCategoria[categoriaHover()]; track sub) {
-                  <li><a href="#catalogo" (click)="closeDropdown(); isMobileMenuOpen.set(false)">{{ sub }}</a></li>
-                }
-              </ul>
+              <!-- Subcategorías dinámicas según la categoría seleccionada en el hover -->
+              <div class="mega-menu-subcategories">
+                <h4>{{ categoriaHover() }}</h4>
+                <ul>
+                  @for (sub of subcategoriasPorCategoria[categoriaHover()]; track sub) {
+                    <li><a href="#catalogo" (click)="closeDropdown(); isMobileMenuOpen.set(false)">{{ sub }}</a></li>
+                  }
+                </ul>
+              </div>
             </div>
           </div>
         }
