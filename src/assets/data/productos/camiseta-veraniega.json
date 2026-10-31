@@ -1,0 +1,23 @@
+{
+  "body": "Camisa ideal para disfrutar dias de sol! con materiales de excelente calidad 100% algodón.",
+  "precio": 35000,
+  "slug": "camisaveraniega",
+  "colores": [
+    "Rojo",
+    "Verde",
+    "Amarillo",
+    "Fucsia"
+  ],
+  "categoria": "Hombre",
+  "subcategoria": "Camisas y Camisetas",
+  "stock": 30,
+  "title": "Camiseta Veraniega",
+  "codigo": "CC_000000000001",
+  "image": "/assets/uploads/17128323622e1595b65a9d43ea92514bbf55c0b92c_thumbnail_750x999.jpg",
+  "description": "Camisa ideal para verano",
+  "tallas": [
+    "S",
+    "L",
+    "M"
+  ]
+}
