@@ -2,8 +2,17 @@
   command = "npm run build"
   publish = "dist/blog-estatico/browser"
 
-# Esto asegura que cualquier ruta que no sea un archivo físico vaya al index de Angular, 
-# pero la carpeta /admin ya viaja física en el build y cargará directo.
+# Desactiva el runtime de SSR de Netlify para forzar que sea 100% estático
+[[plugins]]
+  package = "@netlify/plugin-omit-netlify-files"
+
+# Reglas de enrutamiento
+[[redirects]]
+  from = "/admin/*"
+  to = "/admin/index.html"
+  status = 200
+  force = true
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
