@@ -1,58 +1,31 @@
-backend:
-  name: git-gateway
-  branch: master
-
-media_folder: "public/assets/uploads"
-public_folder: "/assets/uploads"
-
 collections:
-  - name: "productos"
-    label: "Productos"
-    folder: "src/assets/data/productos"
-    create: true
-    slug: "{{slug}}"
-    format: "json"
-    fields:
-      # --- CLASIFICACIÓN ---
-      - label: "Categoría Principal"
-        name: "categoria"
-        widget: "select"
-        options: ["Hombre", "Mujer", "Niños"]
-        default: "Hombre"
-        
-      - label: "Tipo de Prenda (Subcategoría)"
-        name: "subcategoria"
-        widget: "select"
-        options: 
-          - "Camisas y Camisetas"
-          - "Pantalones y Jeans"
-          - "Busos y Chaquetas"
-          - "Blusas"
-          - "Zapatos"
-          - "Ropa Interior y Boxers"
-          - "Medias"
-          - "Accesorios"
-        default: "Camisas y Camisetas"
-
-      # --- IDENTIDAD Y STOCK ---
-      - { label: "Nombre del Producto", name: "title", widget: "string" }
-      - { label: "Slug (URL amigable)", name: "slug", widget: "string" }
-      - { label: "Código / SKU", name: "codigo", widget: "string", hint: "Ej: HO-CAM-001" }
-      - { label: "Precio ($)", name: "precio", widget: "number", value_type: "float", min: 0 }
-      - { label: "Cantidad Disponible (Stock)", name: "stock", widget: "number", value_type: "int", min: 0 }
-
-      # --- VARIANTES ---
-      - label: "Colores Disponibles"
-        name: "colores"
-        widget: "list"
-        field: { label: "Color", name: "color", widget: "string" }
-        
-      - label: "Tallas Disponibles"
-        name: "tallas"
-        widget: "list"
-        field: { label: "Talla", name: "talla", widget: "string" }
-
-      # --- MULTIMEDIA Y TEXTOS ---
-      - { label: "Foto Principal", name: "image", widget: "image" }
-      - { label: "Descripción Corta", name: "description", widget: "text" }
-      - { label: "Descripción Detallada y Materiales", name: "body", widget: "markdown" }
+  - name: "catalogo"
+    label: "Catálogo de Productos"
+    folder: "src/assets/data"
+    create: false
+    files:
+      - name: "productos"
+        label: "Todos los Productos"
+        file: "src/assets/data/productos.json"
+        fields:
+          - label: "Lista de Productos"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "Categoría Principal", name: "categoria", widget: "select", options: ["Hombre", "Mujer", "Niños"] }
+              - { label: "Tipo de Prenda (Subcategoría)", name: "subcategoria", widget: "select", options: ["Camisas y Camisetas", "Pantalones y Jeans", "Busos y Chaquetas", "Blusas", "Zapatos", "Ropa Interior y Boxers", "Medias", "Accesorios"] }
+              - { label: "Nombre del Producto", name: "title", widget: "string" }
+              - { label: "Slug", name: "slug", widget: "string" }
+              - { label: "Código / SKU", name: "codigo", widget: "string" }
+              - { label: "Precio ($)", name: "precio", widget: "number", value_type: "float" }
+              - { label: "Stock", name: "stock", widget: "number", value_type: "int" }
+              - label: "Colores"
+                name: "colores"
+                widget: "list"
+                field: { label: "Color", name: "color", widget: "string" }
+              - label: "Tallas"
+                name: "tallas"
+                widget: "list"
+                field: { label: "Talla", name: "talla", widget: "string" }
+              - { label: "Foto Principal", name: "image", widget: "image" }
+              - { label: "Descripción Corta", name: "description", widget: "text" }

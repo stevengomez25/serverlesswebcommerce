@@ -30,7 +30,6 @@ export class Catalog implements OnInit {
   categoriaActiva = signal<'Hombre' | 'Mujer' | 'Niños'>('Hombre');
   subcategoriaActiva = signal<string>('Todos');
   
-  // Array dinámico alimentado desde la carpeta de assets
   productos = signal<Producto[]>([]);
 
   subcategoriasDisponibles = [
@@ -49,17 +48,20 @@ export class Catalog implements OnInit {
     this.cargarProductosDesdeAdmin();
   }
 
-  // Carga todos los archivos JSON guardados por Decap CMS en src/assets/data/productos/
+  // Carga el archivo JSON centralizado de productos de forma segura mediante HTTP estático
   private cargarProductosDesdeAdmin(): void {
-    const jsonFiles = (import.meta as ImportMeta & {
-      glob: (pattern: string, options: { eager: true }) => Record<string, unknown>;
-    }).glob('/src/assets/data/productos/*.json', { eager: true });
-    
-    const listaProductos: Producto[] = Object.values(jsonFiles).map((fileContent: any) => {
-      return fileContent.default || fileContent;
+    // Apuntamos al archivo JSON índice donde se almacenan los productos
+    this.http.get<{ items: Producto[] }>('/assets/data/productos.json').subscribe({
+      next: (data) => {
+        if (data && Array.isArray(data.items)) {
+          this.productos.set(data.items);
+        }
+      },
+      error: (err) => {
+        console.log('Aún no hay archivo de productos o está vacio, cargando array vacío.', err);
+        this.productos.set([]);
+      }
     });
-
-    this.productos.set(listaProductos);
   }
 
   productosFiltrados = computed(() => {
