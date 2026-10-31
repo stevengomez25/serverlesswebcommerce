@@ -1,6 +1,8 @@
-import { Component, signal, computed, OnInit, inject } from '@angular/core';
+import { Component, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
+
+// Importación directa del JSON estático (Angular lo embebe en el bundle sin fallos de red)
+import productosData from '../../../assets/data/productos.json';
 
 export interface Producto {
   title: string;
@@ -14,7 +16,7 @@ export interface Producto {
   tallas: string[];
   image: string;
   description: string;
-  body: string;
+  body?: string;
 }
 
 @Component({
@@ -24,13 +26,14 @@ export interface Producto {
   templateUrl: './catalog.html',
   styleUrl: './catalog.css'
 })
-export class Catalog implements OnInit {
-  private http = inject(HttpClient);
-
+export class Catalog {
   categoriaActiva = signal<'Hombre' | 'Mujer' | 'Niños'>('Hombre');
   subcategoriaActiva = signal<string>('Todos');
   
-  productos = signal<Producto[]>([]);
+  // Cargamos los datos directamente desde el JSON importado de forma síncrona
+  productos = signal<Producto[]>(
+    Array.isArray(productosData) ? (productosData as Producto[]) : ((productosData as any).items || [])
+  );
 
   subcategoriasDisponibles = [
     'Todos',
@@ -43,29 +46,6 @@ export class Catalog implements OnInit {
     'Medias',
     'Accesorios'
   ];
-
-  ngOnInit(): void {
-    this.cargarProductosDesdeAdmin();
-  }
-
-  // Carga el archivo JSON centralizado de productos de forma segura mediante HTTP estático
-  private cargarProductosDesdeAdmin(): void {
-    this.http.get<any>('/assets/data/productos.json').subscribe({
-      next: (data) => {
-        console.log('Datos cargados del JSON:', data); // Mira esto en la consola
-        
-        if (Array.isArray(data)) {
-          this.productos.set(data); // Si el JSON es un array directo [...]
-        } else if (data && Array.isArray(data.items)) {
-          this.productos.set(data.items); // Si el JSON es un objeto { items: [...] }
-        }
-      },
-      error: (err) => {
-        console.error('Error al cargar productos.json:', err);
-        this.productos.set([]);
-      }
-    });
-  }
 
   productosFiltrados = computed(() => {
     const cat = this.categoriaActiva();
