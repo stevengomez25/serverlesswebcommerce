@@ -1,0 +1,15 @@
+[
+  {
+    "title": "Camiseta de Prueba",
+    "slug": "camiseta-de-prueba",
+    "codigo": "CAM-001",
+    "precio": 45000,
+    "stock": 10,
+    "categoria": "Hombre",
+    "subcategoria": "Camisas y Camisetas",
+    "colores": ["Negro", "Blanco"],
+    "tallas": ["M", "L"],
+    "image": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518",
+    "description": "Camiseta básica de prueba"
+  }
+]
