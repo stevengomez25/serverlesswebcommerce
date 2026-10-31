@@ -1,32 +1,53 @@
 <section class="catalog-section" id="catalogo">
-  
+
   <!-- Pestañas Principales (Hombre / Mujer / Niños) -->
-  <div class="category-tabs-container">
-    <div class="category-tabs">
-      <button 
-        [class.active]="categoriaActiva() === 'Hombre'" 
-        (click)="cambiarCategoria('Hombre')">
-        Hombre
-      </button>
-      <button 
-        [class.active]="categoriaActiva() === 'Mujer'" 
-        (click)="cambiarCategoria('Mujer')">
-        Mujer
-      </button>
-      <button 
-        [class.active]="categoriaActiva() === 'Niños'" 
-        (click)="cambiarCategoria('Niños')">
-        Niños
-      </button>
+  <div class="category-cards-container">
+    <h2 class="section-title">Categorías</h2>
+
+    <div class="category-cards-grid">
+
+      <div class="category-card" [class.active]="categoriaActiva() === 'Hombre'" (click)="cambiarCategoria('Hombre')">
+        <div class="category-image-wrapper">
+          <img src="https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?q=80&w=600&auto=format&fit=crop"
+            alt="Hombre">
+        </div>
+        <div class="category-info">
+          <h3>Hombre</h3>
+          <p>Moda urbana y formal diseñada para destacar en cualquier ocasión.</p>
+        </div>
+      </div>
+
+      <div class="category-card" [class.active]="categoriaActiva() === 'Mujer'" (click)="cambiarCategoria('Mujer')">
+        <div class="category-image-wrapper">
+          <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=600&auto=format&fit=crop"
+            alt="Mujer">
+        </div>
+        <div class="category-info">
+          <h3>Mujer</h3>
+          <p>Tendencias exclusivas que combinan elegancia, confort y estilo.</p>
+        </div>
+      </div>
+
+      <div class="category-card" [class.active]="categoriaActiva() === 'Niños'" (click)="cambiarCategoria('Niños')">
+        <div class="category-image-wrapper">
+          <img src="https://images.unsplash.com/photo-1503944583218-e16e632b694b?q=80&w=600&auto=format&fit=crop"
+            alt="Niños">
+        </div>
+        <div class="category-info">
+          <h3>Niños</h3>
+          <p>Prendas cómodas, resistentes y llenas de color para su día a día.</p>
+        </div>
+      </div>
+
     </div>
   </div>
 
   <div class="catalog-layout">
-    
+
     <!-- Columna Lateral de Filtros -->
     <aside class="filters-sidebar">
       <h3>Filtrar por</h3>
-      
+
       <div class="filter-group">
         <h4>Rango de Precio</h4>
         <input type="range" min="10000" max="300000" step="5000" class="price-range">
@@ -50,47 +71,46 @@
 
     <!-- Contenido Principal: Subcategorías + Grilla de Productos -->
     <main class="products-main">
-      
+
       <!-- Subcategorías Superiores (Pills horizontales) -->
       <div class="subcategories-bar">
         @for (sub of subcategoriasDisponibles; track sub) {
-          <button 
-            [class.active]="subcategoriaActiva() === sub"
-            (click)="filtrarSubcategoria(sub)">
-            {{ sub }}
-          </button>
+        <button [class.active]="subcategoriaActiva() === sub" (click)="filtrarSubcategoria(sub)">
+          {{ sub }}
+        </button>
         }
       </div>
 
       <!-- Conteo de resultados -->
       <div class="results-header">
-        <p>Mostrando colección de <strong>{{ categoriaActiva() }}</strong> ({{ productosFiltrados().length }} productos)</p>
+        <p>Mostrando colección de <strong>{{ categoriaActiva() }}</strong> ({{ productosFiltrados().length }} productos)
+        </p>
       </div>
 
       <!-- Grilla de Productos -->
       @if (productosFiltrados().length > 0) {
-        <div class="products-grid">
-          @for (prod of productosFiltrados(); track prod.codigo) {
-            <div class="product-card">
-              <div class="product-image-container">
-                <img [src]="prod.image" [alt]="prod.title" loading="lazy">
-                <span class="product-badge">{{ prod.subcategoria }}</span>
-              </div>
-              <div class="product-info">
-                <h4>{{ prod.title }}</h4>
-                <p class="product-price">${{ prod.precio.toLocaleString() }}</p>
-                <div class="product-variants">
-                  <span class="sizes">Tallas: {{ prod.tallas.join(', ') }}</span>
-                </div>
-                <button class="btn-detail">Ver Detalles</button>
-              </div>
+      <div class="products-grid">
+        @for (prod of productosFiltrados(); track prod.codigo) {
+        <div class="product-card">
+          <div class="product-image-container">
+            <img [src]="prod.image" [alt]="prod.title" loading="lazy">
+            <span class="product-badge">{{ prod.subcategoria }}</span>
+          </div>
+          <div class="product-info">
+            <h4>{{ prod.title }}</h4>
+            <p class="product-price">${{ prod.precio.toLocaleString() }}</p>
+            <div class="product-variants">
+              <span class="sizes">Tallas: {{ prod.tallas.join(', ') }}</span>
             </div>
-          }
+            <button class="btn-detail">Ver Detalles</button>
+          </div>
         </div>
+        }
+      </div>
       } @else {
-        <div class="no-products">
-          <p>No hay productos disponibles en esta categoría o filtro por el momento.</p>
-        </div>
+      <div class="no-products">
+        <p>No hay productos disponibles en esta categoría o filtro por el momento.</p>
+      </div>
       }
 
     </main>
