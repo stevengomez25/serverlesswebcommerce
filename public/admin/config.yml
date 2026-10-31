@@ -11,7 +11,7 @@ collections:
     files:
       - name: "lista"
         label: "Todos los Productos"
-        file: "src/assets/data/productos.json"
+        file: "public/assets/data/productos.json"
         fields:
           - label: "Lista de Productos"
             name: "items"
