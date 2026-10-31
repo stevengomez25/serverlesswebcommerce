@@ -70,7 +70,7 @@
       <!-- Grilla de Productos -->
       @if (productosFiltrados().length > 0) {
         <div class="products-grid">
-          @for (prod of productosFiltrados(); track prod.id) {
+          @for (prod of productosFiltrados(); track prod.codigo) {
             <div class="product-card">
               <div class="product-image-container">
                 <img [src]="prod.image" [alt]="prod.title" loading="lazy">
