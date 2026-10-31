@@ -44,7 +44,7 @@ export class Catalog implements OnInit {
   private cargarProductos(): void {
     // Apuntamos al archivo índice centralizado que Decap CMS alimentará, 
     // o un endpoint de lista de productos.
-    this.http.get<Producto[]>('/assets/data/productos-index.json').subscribe({
+    this.http.get<Producto[]>('/assets/data/productos.json').subscribe({
       next: (data) => {
         if (Array.isArray(data)) {
           this.productos.set(data);
