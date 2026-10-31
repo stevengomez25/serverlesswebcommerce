@@ -9,10 +9,13 @@ import { CommonModule } from '@angular/common';
   styleUrl: './hero-banner.css'
 })
 export class HeroBannerComponent {
-  // Emite la categoría seleccionada al componente padre para hacer scroll o filtrar
-  seleccionarCategoria = output<string>();
+  categorySelected = output<string>();
 
-  onSelectCategory(categoria: string): void {
-    this.seleccionarCategoria.emit(categoria);
+  onSelectCategory(categoria: string) {
+    this.categorySelected.emit(categoria);
+    const catalogElement = document.getElementById('catalogo');
+    if (catalogElement) {
+      catalogElement.scrollIntoView({ behavior: 'smooth' });
+    }
   }
 }
