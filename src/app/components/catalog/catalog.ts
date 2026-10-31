@@ -1,8 +1,6 @@
-import { Component, signal, computed } from '@angular/core';
+import { Component, signal, computed, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-// Importación directa del JSON estático (Angular lo embebe en el bundle sin fallos de red)
-import productosData from '../../../assets/data/productos.json';
+import { HttpClient } from '@angular/common/http';
 
 export interface Producto {
   title: string;
@@ -26,31 +24,42 @@ export interface Producto {
   templateUrl: './catalog.html',
   styleUrl: './catalog.css'
 })
-export class Catalog {
+export class Catalog implements OnInit {
+  private http = inject(HttpClient);
+
   categoriaActiva = signal<'Hombre' | 'Mujer' | 'Niños'>('Hombre');
   subcategoriaActiva = signal<string>('Todos');
-  
-  // Cargamos los datos directamente desde el JSON importado de forma síncrona
-  productos = signal<Producto[]>(
-    Array.isArray(productosData) ? (productosData as Producto[]) : ((productosData as any).items || [])
-  );
+  productos = signal<Producto[]>([]);
 
   subcategoriasDisponibles = [
-    'Todos',
-    'Camisas y Camisetas',
-    'Pantalones y Jeans',
-    'Busos y Chaquetas',
-    'Blusas',
-    'Zapatos',
-    'Ropa Interior y Boxers',
-    'Medias',
-    'Accesorios'
+    'Todos', 'Camisas y Camisetas', 'Pantalones y Jeans', 
+    'Busos y Chaquetas', 'Blusas', 'Zapatos', 
+    'Ropa Interior y Boxers', 'Medias', 'Accesorios'
   ];
+
+  ngOnInit(): void {
+    this.cargarProductos();
+  }
+
+  private cargarProductos(): void {
+    // Apuntamos al archivo índice centralizado que Decap CMS alimentará, 
+    // o un endpoint de lista de productos.
+    this.http.get<Producto[]>('/assets/data/productos-index.json').subscribe({
+      next: (data) => {
+        if (Array.isArray(data)) {
+          this.productos.set(data);
+        }
+      },
+      error: () => {
+        // Fallback si el archivo índice aún no existe
+        this.productos.set([]);
+      }
+    });
+  }
 
   productosFiltrados = computed(() => {
     const cat = this.categoriaActiva();
     const subcat = this.subcategoriaActiva();
-
     return this.productos().filter(p => {
       const matchCat = p.categoria === cat;
       const matchSubcat = subcat === 'Todos' || p.subcategoria === subcat;
