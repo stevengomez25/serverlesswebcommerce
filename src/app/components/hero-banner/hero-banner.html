@@ -1,0 +1,29 @@
+<section class="hero-container">
+  <div class="hero-overlay"></div>
+  
+  <div class="hero-content">
+    <span class="hero-badge">Nueva Colección 2026</span>
+    <h1 class="hero-title">Estilo Sin Límites</h1>
+    <p class="hero-subtitle">
+      Descubre las últimas tendencias en moda urbana y formal. Calidad, comodidad y diseño exclusivo para cada ocasión.
+    </p>
+
+    <!-- Botones de Acción Directa a las Galerías -->
+    <div class="hero-actions">
+      <button class="btn btn-primary" (click)="onSelectCategory('Hombre')">
+        <span>Colección Hombre</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </button>
+      
+      <button class="btn btn-secondary" (click)="onSelectCategory('Mujer')">
+        <span>Colección Mujer</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </button>
+
+      <button class="btn btn-outline" (click)="onSelectCategory('Niños')">
+        <span>Colección Niños</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
