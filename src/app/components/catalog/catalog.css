@@ -3,13 +3,14 @@
   margin: 0 auto;
   padding: 3rem 1.5rem;
   font-family: inherit;
+  box-sizing: border-box;
 }
 
-/* Pestañas Principales */
+/* Pestañas Principales / Tarjetas de Categoría */
 .category-cards-container {
   max-width: 1200px;
   margin: 0 auto 3rem auto;
-  padding: 0 1.5rem;
+  padding: 0;
 }
 
 .section-title {
@@ -41,13 +42,11 @@
 .category-image-wrapper {
   width: 100%;
   height: 380px;
-  border-radius: 100%;
+  border-radius: 20px;
   overflow: hidden;
   background-color: #f3f4f6;
   border: 2px solid transparent;
-  transition:
-    border-color 0.25s ease,
-    box-shadow 0.25s ease;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .category-image-wrapper img {
@@ -82,29 +81,11 @@
   font-weight: 300;
 }
 
-/* Responsividad para móviles */
-@media (max-width: 768px) {
-  .category-cards-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .category-image-wrapper {
-    height: 280px;
-  }
-}
-
 /* Layout de dos columnas (Filtros + Productos) */
 .catalog-layout {
   display: grid;
   grid-template-columns: 260px 1fr;
   gap: 2.5rem;
-}
-
-@media (max-width: 900px) {
-  .catalog-layout {
-    grid-template-columns: 1fr;
-  }
 }
 
 /* Sidebar de Filtros */
@@ -176,6 +157,16 @@
   padding-bottom: 0.75rem;
   margin-bottom: 1.5rem;
   scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
+}
+
+.subcategories-bar::-webkit-scrollbar {
+  height: 4px;
+}
+
+.subcategories-bar::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
 }
 
 .subcategories-bar button {
@@ -189,6 +180,7 @@
   white-space: nowrap;
   cursor: pointer;
   transition: all 0.2s;
+  flex-shrink: 0;
 }
 
 .subcategories-bar button:hover,
@@ -207,7 +199,7 @@
 /* Grilla de Productos */
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 1.5rem;
 }
 
@@ -216,9 +208,7 @@
   border: 1px solid #e2e8f0;
   border-radius: 0.75rem;
   overflow: hidden;
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   display: flex;
   flex-direction: column;
 }
@@ -307,4 +297,75 @@
   color: #64748b;
   background: #f8fafc;
   border-radius: 0.75rem;
+}
+
+/* =========================================
+   MEDIA QUERIES / RESPONSIVIDAD OPTIMIZADA
+   ========================================= */
+
+/* Tablets y pantallas medianas (hasta 1024px) */
+@media (max-width: 1024px) {
+  .catalog-layout {
+    grid-template-columns: 240px 1fr;
+    gap: 1.5rem;
+  }
+}
+
+/* Dispositivos móviles y tablets pequeñas (hasta 900px) */
+@media (max-width: 900px) {
+  .catalog-section {
+    padding: 2rem 1rem;
+  }
+
+  .category-cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .category-image-wrapper {
+    height: 220px;
+  }
+
+  .catalog-layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .filters-sidebar {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+/* Teléfonos móviles pequeños / medianos (hasta 640px) */
+@media (max-width: 640px) {
+  .category-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .category-image-wrapper {
+    height: 260px;
+    border-radius: 16px;
+  }
+
+  .section-title {
+    font-size: 1.6rem;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .product-image-container {
+    height: 200px;
+  }
+}
+
+/* Teléfonos muy estrechos (hasta 400px) */
+@media (max-width: 400px) {
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
 }
