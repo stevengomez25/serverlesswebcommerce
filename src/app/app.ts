@@ -4,11 +4,12 @@ import { HeroBannerComponent } from './components/hero-banner/hero-banner';
 import { Catalog } from './components/catalog/catalog';
 import { Navbar } from './components/navbar/navbar';
 import { Footer } from './components/footer/footer';
+import { MeetUs } from './pages/meet-us/meet-us';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, Navbar, HeroBannerComponent, Catalog, Footer],
+  imports: [RouterOutlet, Navbar, HeroBannerComponent, Catalog, Footer, MeetUs],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

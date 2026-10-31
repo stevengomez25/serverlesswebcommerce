@@ -1,0 +1,126 @@
+.meet-us-section {
+  width: 100%;
+  padding: 5rem 1.5rem;
+  background-color: #ffffff;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.meet-us-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.meet-us-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  min-width: 0;
+}
+
+.meet-us-text h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #111111;
+  letter-spacing: -0.5px;
+  margin: 0;
+}
+
+.subtitle {
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: #4b5563;
+  margin: 0;
+}
+
+.meet-us-text p {
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: #374151;
+  margin: 0;
+  font-weight: 300;
+}
+
+/* Misión, Visión y Valores */
+.mvv-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.mvv-card {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  padding: 1.25rem;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.mvv-card h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #111111;
+  margin: 0;
+}
+
+.mvv-card p {
+  font-size: 0.85rem;
+  color: #6b7280;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Imagen lateral */
+.meet-us-image {
+  width: 100%;
+  height: 600px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+  min-width: 0;
+}
+
+.meet-us-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Responsividad */
+@media (max-width: 1024px) {
+  .meet-us-container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .meet-us-image {
+    height: 450px;
+    order: -1; /* Pone la imagen arriba en tablets/móviles opcionalmente */
+  }
+}
+
+@media (max-width: 768px) {
+  .meet-us-section {
+    padding: 3rem 1rem;
+  }
+
+  .meet-us-text h2 {
+    font-size: 2rem;
+  }
+
+  .mvv-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .meet-us-image {
+    height: 350px;
+  }
+}
