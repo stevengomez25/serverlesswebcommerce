@@ -18,7 +18,6 @@
         </button>
 
         <!-- Minimodal / Mega Menú -->
-        <!-- Minimodal / Mega Menú -->
         @if (isDropdownOpen()) {
           <div class="mega-menu" (mouseenter)="isDropdownOpen.set(true)" (mouseleave)="closeDropdown()">
             <div class="mega-menu-content">
@@ -43,7 +42,7 @@
                 </button>
               </div>
 
-              <!-- Subcategorías dinámicas según la categoría seleccionada en el hover -->
+              <!-- Subcategorías dinámicas -->
               <div class="mega-menu-subcategories">
                 <h4>{{ categoriaHover() }}</h4>
                 <ul>
@@ -62,11 +61,13 @@
       <a href="#contacto" (click)="toggleMobileMenu()">Contacto</a>
     </nav>
 
-    <!-- Iconos de Acceso / Carrito -->
+    <!-- Iconos de Acceso / Carrito y Botón Estilo Referencia -->
     <div class="nav-actions">
       <button class="cart-btn" aria-label="Carrito de compras">
         🛒 <span class="cart-badge">0</span>
       </button>
+
+      <a href="#catalogo" class="btn-cta-minimal">Catálogo Completo</a>
 
       <!-- Botón Menú Hamburguesa (Mobile) -->
       <button class="hamburger-btn" (click)="toggleMobileMenu()" aria-label="Abrir menú">
