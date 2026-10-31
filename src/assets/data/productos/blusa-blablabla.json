@@ -1,0 +1,23 @@
+{
+  "precio": 40000,
+  "slug": "blusaxd",
+  "colores": [
+    "blanco",
+    "rojo",
+    "verde"
+  ],
+  "categoria": "Mujer",
+  "subcategoria": "Blusas",
+  "stock": 30,
+  "title": "Blusa blablabla",
+  "codigo": "XD0000000000000000000001",
+  "image": "/assets/uploads/65eb9815b31c5a1d44cae98a1f6dd9de.jpg",
+  "description": "La vida es dura como la verdura",
+  "tallas": [
+    "S",
+    "M",
+    "L",
+    "XL",
+    "XXL"
+  ]
+}
