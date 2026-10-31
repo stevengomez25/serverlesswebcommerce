@@ -50,15 +50,18 @@ export class Catalog implements OnInit {
 
   // Carga el archivo JSON centralizado de productos de forma segura mediante HTTP estático
   private cargarProductosDesdeAdmin(): void {
-    // Apuntamos al archivo JSON índice donde se almacenan los productos
-    this.http.get<{ items: Producto[] }>('/assets/data/productos.json').subscribe({
+    this.http.get<any>('/assets/data/productos.json').subscribe({
       next: (data) => {
-        if (data && Array.isArray(data.items)) {
-          this.productos.set(data.items);
+        console.log('Datos cargados del JSON:', data); // Mira esto en la consola
+        
+        if (Array.isArray(data)) {
+          this.productos.set(data); // Si el JSON es un array directo [...]
+        } else if (data && Array.isArray(data.items)) {
+          this.productos.set(data.items); // Si el JSON es un objeto { items: [...] }
         }
       },
       error: (err) => {
-        console.log('Aún no hay archivo de productos o está vacio, cargando array vacío.', err);
+        console.error('Error al cargar productos.json:', err);
         this.productos.set([]);
       }
     });
