@@ -1,0 +1,114 @@
+<section class="contact-section">
+  <div class="contact-container">
+    
+    <!-- Columna Izquierda: Información y Redes Sociales -->
+    <div class="contact-info">
+      <h2>Ponte en contacto</h2>
+      <p class="subtitle">
+        ¿Tienes alguna duda sobre nuestras prendas, pedidos o envíos? Escríbenos directamente o contáctanos por nuestras redes.
+      </p>
+
+      <div class="info-items">
+        <div class="info-item">
+          <span class="info-icon">📍</span>
+          <div>
+            <h4>Ubicación</h4>
+            <p>Colombia</p>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <span class="info-icon">💬</span>
+          <div>
+            <h4>Atención por WhatsApp</h4>
+            <p>Lunes a Sábado: 8:00 AM - 6:00 PM</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Redes Sociales -->
+      <div class="social-section">
+        <h4>Síguenos en nuestras redes</h4>
+        <div class="social-links">
+          <a href="#" target="_blank" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            <span>Facebook</span>
+          </a>
+
+          <a href="#" target="_blank" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+            <span>Instagram</span>
+          </a>
+
+          <a href="#" target="_blank" aria-label="YouTube">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><polygon points="10 15 15 12 10 9 10 15"/></svg>
+            <span>YouTube</span>
+          </a>
+
+          <a href="#" target="_blank" aria-label="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+            <span>LinkedIn</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Columna Derecha: Formulario de Contacto -->
+    <div class="contact-card">
+      <form (submit)="sendToWhatsApp($event)">
+        <div class="form-group">
+          <label for="nombre">Nombre completo *</label>
+          <input 
+            type="text" 
+            id="nombre" 
+            [ngModel]="nombre()" 
+            (ngModelChange)="nombre.set($event)" 
+            name="nombre" 
+            placeholder="Tu nombre" 
+            required />
+        </div>
+
+        <div class="form-group">
+          <label for="telefono">Número de teléfono *</label>
+          <input 
+            type="tel" 
+            id="telefono" 
+            [ngModel]="telefono()" 
+            (ngModelChange)="telefono.set($event)" 
+            name="telefono" 
+            placeholder="Ej: +57 300 123 4567" 
+            required />
+        </div>
+
+        <div class="form-group">
+          <label for="correo">Correo electrónico (Opcional)</label>
+          <input 
+            type="email" 
+            id="correo" 
+            [ngModel]="correo()" 
+            (ngModelChange)="correo.set($event)" 
+            name="correo" 
+            placeholder="tu@correo.com" />
+        </div>
+
+        <div class="form-group">
+          <label for="mensaje">Mensaje *</label>
+          <textarea 
+            id="mensaje" 
+            rows="4" 
+            [ngModel]="mensaje()" 
+            (ngModelChange)="mensaje.set($event)" 
+            name="mensaje" 
+            placeholder="Escribe tu consulta o mensaje aquí..." 
+            required></textarea>
+        </div>
+
+        <button type="submit" class="btn-send-whatsapp">
+          <span>Enviar mensaje por WhatsApp</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </form>
+    </div>
+
+  </div>
+</section>
