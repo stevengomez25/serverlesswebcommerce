@@ -1,6 +1,6 @@
 <header class="header-nav">
   <div class="nav-container">
-    
+
     <!-- Logo / Marca -->
     <div class="nav-brand">
       <a href="#">Tienda de Flor</a>
@@ -13,50 +13,44 @@
       <!-- Opción con Minimarket / Mega Menú desplegable -->
       <div class="dropdown-wrapper" (mouseleave)="closeDropdown()">
         <button class="dropdown-toggle" (click)="toggleDropdown()" (mouseenter)="isDropdownOpen.set(true)">
-          ¿Qué ofrecemos? 
+          ¿Qué ofrecemos?
           <span class="arrow" [class.rotate]="isDropdownOpen()">▼</span>
         </button>
 
         <!-- Minimodal / Mega Menú -->
         @if (isDropdownOpen()) {
-          <div class="mega-menu" (mouseenter)="isDropdownOpen.set(true)" (mouseleave)="closeDropdown()">
-            <div class="mega-menu-content">
-              <div class="mega-menu-categories">
-                <button 
-                  [class.active]="categoriaHover() === 'Hombre'"
-                  (mouseenter)="setHoverCategory('Hombre')"
-                  (click)="setHoverCategory('Hombre')">
-                  Hombre ➔
-                </button>
-                <button 
-                  [class.active]="categoriaHover() === 'Mujer'"
-                  (mouseenter)="setHoverCategory('Mujer')"
-                  (click)="setHoverCategory('Mujer')">
-                  Mujer ➔
-                </button>
-                <button 
-                  [class.active]="categoriaHover() === 'Niños'"
-                  (mouseenter)="setHoverCategory('Niños')"
-                  (click)="setHoverCategory('Niños')">
-                  Niños ➔
-                </button>
-              </div>
+        <div class="mega-menu" (mouseenter)="isDropdownOpen.set(true)" (mouseleave)="closeDropdown()">
+          <div class="mega-menu-content">
+            <div class="mega-menu-categories">
+              <button [class.active]="categoriaHover() === 'Hombre'" (mouseenter)="setHoverCategory('Hombre')"
+                (click)="setHoverCategory('Hombre')">
+                Hombre ➔
+              </button>
+              <button [class.active]="categoriaHover() === 'Mujer'" (mouseenter)="setHoverCategory('Mujer')"
+                (click)="setHoverCategory('Mujer')">
+                Mujer ➔
+              </button>
+              <button [class.active]="categoriaHover() === 'Niños'" (mouseenter)="setHoverCategory('Niños')"
+                (click)="setHoverCategory('Niños')">
+                Niños ➔
+              </button>
+            </div>
 
-              <!-- Subcategorías dinámicas -->
-              <div class="mega-menu-subcategories">
-                <h4>{{ categoriaHover() }}</h4>
-                <ul>
-                  @for (sub of subcategoriasPorCategoria[categoriaHover()]; track sub) {
-                    <li><a href="#catalogo" (click)="closeDropdown(); isMobileMenuOpen.set(false)">{{ sub }}</a></li>
-                  }
-                </ul>
-              </div>
+            <!-- Subcategorías dinámicas -->
+            <div class="mega-menu-subcategories">
+              <h4>{{ categoriaHover() }}</h4>
+              <ul>
+                @for (sub of subcategoriasPorCategoria[categoriaHover()]; track sub) {
+                <li><a href="#catalogo" (click)="closeDropdown(); isMobileMenuOpen.set(false)">{{ sub }}</a></li>
+                }
+              </ul>
             </div>
           </div>
+        </div>
         }
       </div>
 
-      <a routerLink="/meetus"(click)="toggleMobileMenu()">Conócenos</a>
+      <a routerLink="/meetus" (click)="toggleMobileMenu()">Conócenos</a>
       <a routerLink="/ayuda" (click)="toggleMobileMenu()">Ayuda</a>
       <a routerLink="/contacto" (click)="toggleMobileMenu()">Contacto</a>
     </nav>
@@ -64,11 +58,16 @@
     <!-- Iconos de Acceso / Carrito y Botón Estilo Referencia -->
     <div class="navbar-actions">
       <button class="btn-cart-trigger" (click)="openCart()" aria-label="Abrir carrito">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
-        
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="8" cy="21" r="1" />
+          <circle cx="19" cy="21" r="1" />
+          <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
+        </svg>
+
         <!-- Insignia con el número de productos en tiempo real -->
         @if (cartService.totalItems() > 0) {
-          <span class="cart-badge">{{ cartService.totalItems() }}</span>
+        <span class="cart-badge">{{ cartService.totalItems() }}</span>
         }
       </button>
 
@@ -79,6 +78,6 @@
         ☰
       </button>
     </div>
-
+    <app-cart-modal [isOpen]="isCartOpen()" (closeModal)="closeCart()" />
   </div>
 </header>
