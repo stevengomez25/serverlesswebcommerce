@@ -19,13 +19,16 @@ export class CartService {
   items = this.cartItems.asReadonly();
 
   // Computados automáticos para totales y cantidad de productos
-  totalPrice = computed(() => 
-    this.cartItems().reduce((acc, item) => acc + (item.precio * item.cantidad), 0)
-  );
+  // Totales computados seguros
+  totalPrice = computed(() => {
+    const items = this.cartItems();
+    return items.reduce((acc, item) => acc + (Number(item.precio) * Number(item.cantidad)), 0);
+  });
 
-  totalItems = computed(() => 
-    this.cartItems().reduce((acc, item) => acc + item.cantidad, 0)
-  );
+  totalItems = computed(() => {
+    const items = this.cartItems();
+    return items.reduce((acc, item) => acc + Number(item.cantidad), 0);
+  });
 
   // Agregar producto al carrito
   addToCart(product: CartItem) {
