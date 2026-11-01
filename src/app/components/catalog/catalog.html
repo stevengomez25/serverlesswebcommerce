@@ -6,7 +6,8 @@
 
     <div class="category-cards-grid">
 
-      <a class="category-card" [class.active]="categoriaActiva() === 'Hombre'" (click)="cambiarCategoria('Hombre')" href="#sub-categories">
+      <a class="category-card" [class.active]="categoriaActiva() === 'Hombre'" (click)="cambiarCategoria('Hombre')"
+        href="#sub-categories">
         <div class="category-image-wrapper">
           <img src="https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?q=80&w=600&auto=format&fit=crop"
             alt="Hombre">
@@ -17,7 +18,8 @@
         </div>
       </a>
 
-      <a class="category-card" [class.active]="categoriaActiva() === 'Mujer'" (click)="cambiarCategoria('Mujer')" href="#sub-categories">
+      <a class="category-card" [class.active]="categoriaActiva() === 'Mujer'" (click)="cambiarCategoria('Mujer')"
+        href="#sub-categories">
         <div class="category-image-wrapper">
           <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=600&auto=format&fit=crop"
             alt="Mujer">
@@ -28,10 +30,10 @@
         </div>
       </a>
 
-      <a class="category-card" [class.active]="categoriaActiva() === 'Niños'" (click)="cambiarCategoria('Niños')" href="#sub-categories">
+      <a class="category-card" [class.active]="categoriaActiva() === 'Niños'" (click)="cambiarCategoria('Niños')"
+        href="#sub-categories">
         <div class="category-image-wrapper">
-          <img src="/assets/img/kids.jpg"
-            alt="Niños">
+          <img src="/assets/img/kids.jpg" alt="Niños">
         </div>
         <div class="category-info">
           <h3>Niños</h3>
@@ -92,59 +94,61 @@
       <div class="products-grid">
         @for (prod of productosFiltrados(); track prod.codigo) {
         <div class="product-card">
-          <div class="product-image-container">
+
+          <!-- Imagen con Click y Botón de Hover -->
+          <div class="product-image-container" (click)="abrirDetalle(prod)">
             <img [src]="prod.image" [alt]="prod.title" loading="lazy">
             <span class="product-badge">{{ prod.subcategoria }}</span>
+            <button class="btn-hover-detail" (click)="$event.stopPropagation(); abrirDetalle(prod)">
+              Ver Detalles
+            </button>
           </div>
-          
+
           <div class="product-info">
             <h4>{{ prod.title }}</h4>
             <p class="product-price">${{ prod.precio.toLocaleString() }}</p>
 
             <!-- Si NO se está configurando este producto, muestra la información normal y el botón de iniciar selección -->
             @if (productoConfigurandoId() !== prod.codigo) {
-              <div class="product-variants">
-                <span class="sizes">Tallas: {{ prod.tallas.join(', ') }}</span>
-              </div>
-              <button class="btn-detail" (click)="iniciarSeleccion(prod)">Agregar al Carrito</button>
-            } 
+            <div class="product-variants">
+              <span class="sizes">Tallas: {{ prod.tallas.join(', ') }}</span>
+            </div>
+            <button class="btn-detail" (click)="iniciarSeleccion(prod)">Agregar al Carrito</button>
+            }
             <!-- Si SÍ se está configurando, se despliega el panel de opciones ocupando el mismo espacio -->
             @else {
-              <div class="product-config-panel">
-                
-                <!-- Selector de Talla -->
-                <div class="config-group">
-                  <label>Talla:</label>
-                  <select [ngModel]="tallaSeleccionada()" (ngModelChange)="tallaSeleccionada.set($event)">
-                    @for (talla of prod.tallas; track talla) {
-                      <option [value]="talla">{{ talla }}</option>
-                    }
-                  </select>
-                </div>
+            <div class="product-config-panel">
 
-                <!-- Selector de Color -->
-                <div class="config-group">
-                  <label>Color:</label>
-                  <select [ngModel]="colorSeleccionado()" (ngModelChange)="colorSeleccionado.set($event)">
-                    @for (color of prod.colores; track color) {
-                      <option [value]="color">{{ color }}</option>
-                    }
-                  </select>
-                </div>
-
-                <!-- Selector de Cantidad -->
-                <div class="config-group">
-                  <label>Cant:</label>
-                  <input type="number" min="1" max="10" [ngModel]="cantidadSeleccionada()" (ngModelChange)="cantidadSeleccionada.set($event)">
-                </div>
-
-                <!-- Botones de Confirmación y Cancelación -->
-                <div class="config-buttons">
-                  <button class="btn-confirm" (click)="confirmarAgregar(prod)">Confirmar</button>
-                  <button class="btn-cancel" (click)="cancelarSeleccion()">✕</button>
-                </div>
-
+              <div class="config-group">
+                <label>Talla:</label>
+                <select [ngModel]="tallaSeleccionada()" (ngModelChange)="tallaSeleccionada.set($event)">
+                  @for (talla of prod.tallas; track talla) {
+                  <option [value]="talla">{{ talla }}</option>
+                  }
+                </select>
               </div>
+
+              <div class="config-group">
+                <label>Color:</label>
+                <select [ngModel]="colorSeleccionado()" (ngModelChange)="colorSeleccionado.set($event)">
+                  @for (color of prod.colores; track color) {
+                  <option [value]="color">{{ color }}</option>
+                  }
+                </select>
+              </div>
+
+              <div class="config-group">
+                <label>Cant:</label>
+                <input type="number" min="1" max="10" [ngModel]="cantidadSeleccionada()"
+                  (ngModelChange)="cantidadSeleccionada.set($event)">
+              </div>
+
+              <div class="config-buttons">
+                <button class="btn-confirm" (click)="confirmarAgregar(prod)">Confirmar</button>
+                <button class="btn-cancel" (click)="cancelarSeleccion()">✕</button>
+              </div>
+
+            </div>
             }
 
           </div>
@@ -154,6 +158,46 @@
       } @else {
       <div class="no-products">
         <p>No hay productos disponibles en esta categoría o filtro por el momento.</p>
+      </div>
+      }
+
+      <!-- Modal de Detalles del Artículo -->
+      @if (productoDetalle(); as prod) {
+      <div class="detail-modal-overlay" (click)="cerrarDetalle()">
+        <div class="detail-modal-content" (click)="$event.stopPropagation()">
+          <button class="btn-close-modal" (click)="cerrarDetalle()">✕</button>
+
+          <div class="modal-body-grid">
+            <div class="modal-image-wrapper">
+              <img [src]="prod.image" [alt]="prod.title">
+            </div>
+
+            <div class="modal-info-wrapper">
+              <span class="modal-badge">{{ prod.categoria }} / {{ prod.subcategoria }}</span>
+              <h2>{{ prod.title }}</h2>
+              <p class="modal-code">Código: {{ prod.codigo }}</p>
+              <p class="modal-price">${{ prod.precio.toLocaleString() }}</p>
+
+              <div class="modal-description">
+                <h4>Descripción</h4>
+                <p>{{ prod.description }}</p>
+                @if (prod.body) {
+                <p class="modal-extra-body">{{ prod.body }}</p>
+                }
+              </div>
+
+              <div class="modal-specs">
+                <p><strong>Tallas disponibles:</strong> {{ prod.tallas.join(', ') }}</p>
+                <p><strong>Colores disponibles:</strong> {{ prod.colores.join(', ') }}</p>
+                <p><strong>Stock disponible:</strong> {{ prod.stock }} unidades</p>
+              </div>
+
+              <button class="btn-modal-add" (click)="cerrarDetalle(); iniciarSeleccion(prod)">
+                Comprar / Personalizar
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
       }
 

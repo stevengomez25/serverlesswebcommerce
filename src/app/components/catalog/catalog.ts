@@ -46,6 +46,8 @@ export class Catalog implements OnInit {
   colorSeleccionado = signal<string>('');
   cantidadSeleccionada = signal<number>(1);
 
+  productoDetalle = signal<Producto | null>(null);
+
   ngOnInit(): void {
     this.cargarProductos();
   }
@@ -87,7 +89,15 @@ export class Catalog implements OnInit {
     this.subcategoriaActiva.set(sub);
     this.productoConfigurandoId.set(null);
   }
+  // Lógica del Modal de Detalles
+  abrirDetalle(prod: Producto) {
+    this.productoDetalle.set(prod);
+  }
 
+  cerrarDetalle() {
+    this.productoDetalle.set(null);
+  }
+  
   // Lógica para el carrito
   iniciarSeleccion(prod: Producto) {
     this.productoConfigurandoId.set(prod.codigo);
