@@ -1,6 +1,8 @@
 import { Component, signal, computed, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { CartService } from '../../services/cart';
+import { FormsModule } from '@angular/forms';
 
 export interface Producto {
   title: string;
@@ -20,12 +22,13 @@ export interface Producto {
 @Component({
   selector: 'app-catalog',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './catalog.html',
   styleUrl: './catalog.css'
 })
 export class Catalog implements OnInit {
   private http = inject(HttpClient);
+  cartService = inject(CartService);
 
   categoriaActiva = signal<'Hombre' | 'Mujer' | 'Niños'>('Hombre');
   subcategoriaActiva = signal<string>('Todos');
@@ -37,17 +40,20 @@ export class Catalog implements OnInit {
     'Ropa Interior y Boxers', 'Medias', 'Accesorios'
   ];
 
+  // Estado para la lógica de agregar al carrito por producto
+  productoConfigurandoId = signal<string | null>(null);
+  tallaSeleccionada = signal<string>('');
+  colorSeleccionado = signal<string>('');
+  cantidadSeleccionada = signal<number>(1);
+
   ngOnInit(): void {
     this.cargarProductos();
   }
 
   private cargarProductos(): void {
-    // Usamos la ruta pública correcta y tipamos como 'any' o un objeto con items
     this.http.get<any>('/assets/data/productos.json').subscribe({
       next: (data) => {
-        console.log('Datos cargados:', data); // Útil para verificar en la consola (F12)
-        
-        // Soportamos ambos formatos por seguridad (objeto con items o array plano)
+        console.log('Datos cargados:', data);
         if (data && Array.isArray(data.items)) {
           this.productos.set(data.items);
         } else if (Array.isArray(data)) {
@@ -74,9 +80,49 @@ export class Catalog implements OnInit {
   cambiarCategoria(cat: 'Hombre' | 'Mujer' | 'Niños') {
     this.categoriaActiva.set(cat);
     this.subcategoriaActiva.set('Todos');
+    this.productoConfigurandoId.set(null);
   }
 
   filtrarSubcategoria(sub: string) {
     this.subcategoriaActiva.set(sub);
+    this.productoConfigurandoId.set(null);
+  }
+
+  // Lógica para el carrito
+  iniciarSeleccion(prod: Producto) {
+    this.productoConfigurandoId.set(prod.codigo);
+    this.tallaSeleccionada.set(prod.tallas?.[0] || 'Única');
+    this.colorSeleccionado.set(prod.colores?.[0] || 'Único');
+    this.cantidadSeleccionada.set(1);
+  }
+
+  cancelarSeleccion() {
+    this.productoConfigurandoId.set(null);
+  }
+
+  seleccionarTalla(talla: string) {
+    this.tallaSeleccionada.set(talla);
+  }
+
+  seleccionarColor(color: string) {
+    this.colorSeleccionado.set(color);
+  }
+
+  cambiarCantidad(delta: number) {
+    const nuevaCant = this.cantidadSeleccionada() + delta;
+    if (nuevaCant >= 1) {
+      this.cantidadSeleccionada.set(nuevaCant);
+    }
+  }
+
+  confirmarAgregar(prod: Producto) {
+    this.cartService.addToCart({
+      id: prod.codigo,
+      nombre: prod.title,
+      precio: prod.precio,
+      cantidad: this.cantidadSeleccionada(),
+      talla: `${this.tallaSeleccionada()} / Color: ${this.colorSeleccionado()}`
+    });
+    this.productoConfigurandoId.set(null);
   }
 }

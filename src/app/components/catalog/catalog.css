@@ -330,6 +330,83 @@
   border-radius: 0.75rem;
 }
 
+/* Panel desplegable dentro de la misma tarjeta */
+.product-config-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+  background-color: #f8fafc;
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.config-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  color: #334155;
+  font-weight: 500;
+}
+
+.config-group select,
+.config-group input {
+  padding: 0.3rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #cbd5e1;
+  font-size: 0.82rem;
+  background-color: #ffffff;
+  outline: none;
+  width: 65%;
+}
+
+.config-buttons {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.btn-confirm {
+  flex-grow: 1;
+  background-color: #0f172a;
+  color: #ffffff;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn-confirm:hover {
+  background-color: #334155;
+}
+
+.btn-cancel {
+  background-color: #e2e8f0;
+  color: #475569;
+  border: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn-cancel:hover {
+  background-color: #cbd5e1;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 /* =========================================
    MEDIA QUERIES / RESPONSIVIDAD OPTIMIZADA
    ========================================= */

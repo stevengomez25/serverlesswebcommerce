@@ -96,13 +96,57 @@
             <img [src]="prod.image" [alt]="prod.title" loading="lazy">
             <span class="product-badge">{{ prod.subcategoria }}</span>
           </div>
+          
           <div class="product-info">
             <h4>{{ prod.title }}</h4>
             <p class="product-price">${{ prod.precio.toLocaleString() }}</p>
-            <div class="product-variants">
-              <span class="sizes">Tallas: {{ prod.tallas.join(', ') }}</span>
-            </div>
-            <button class="btn-detail">Ver Detalles</button>
+
+            <!-- Si NO se está configurando este producto, muestra la información normal y el botón de iniciar selección -->
+            @if (productoConfigurandoId() !== prod.codigo) {
+              <div class="product-variants">
+                <span class="sizes">Tallas: {{ prod.tallas.join(', ') }}</span>
+              </div>
+              <button class="btn-detail" (click)="iniciarSeleccion(prod)">Agregar al Carrito</button>
+            } 
+            <!-- Si SÍ se está configurando, se despliega el panel de opciones ocupando el mismo espacio -->
+            @else {
+              <div class="product-config-panel">
+                
+                <!-- Selector de Talla -->
+                <div class="config-group">
+                  <label>Talla:</label>
+                  <select [ngModel]="tallaSeleccionada()" (ngModelChange)="tallaSeleccionada.set($event)">
+                    @for (talla of prod.tallas; track talla) {
+                      <option [value]="talla">{{ talla }}</option>
+                    }
+                  </select>
+                </div>
+
+                <!-- Selector de Color -->
+                <div class="config-group">
+                  <label>Color:</label>
+                  <select [ngModel]="colorSeleccionado()" (ngModelChange)="colorSeleccionado.set($event)">
+                    @for (color of prod.colores; track color) {
+                      <option [value]="color">{{ color }}</option>
+                    }
+                  </select>
+                </div>
+
+                <!-- Selector de Cantidad -->
+                <div class="config-group">
+                  <label>Cant:</label>
+                  <input type="number" min="1" max="10" [ngModel]="cantidadSeleccionada()" (ngModelChange)="cantidadSeleccionada.set($event)">
+                </div>
+
+                <!-- Botones de Confirmación y Cancelación -->
+                <div class="config-buttons">
+                  <button class="btn-confirm" (click)="confirmarAgregar(prod)">Confirmar</button>
+                  <button class="btn-cancel" (click)="cancelarSeleccion()">✕</button>
+                </div>
+
+              </div>
+            }
+
           </div>
         </div>
         }
