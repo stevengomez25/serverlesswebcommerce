@@ -15,7 +15,7 @@ export class CartModalComponent {
   closeModal = output<void>();
 
   cartService = inject(CartService);
-  storePhone = '573000000000'; // Reemplaza con tu número de WhatsApp
+  storePhone = '573164187146'; // Reemplaza con tu número de WhatsApp
 
   onClose() {
     this.closeModal.emit();
