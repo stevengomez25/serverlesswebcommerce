@@ -6,7 +6,7 @@
 
     <div class="category-cards-grid">
 
-      <div class="category-card" [class.active]="categoriaActiva() === 'Hombre'" (click)="cambiarCategoria('Hombre')">
+      <a class="category-card" [class.active]="categoriaActiva() === 'Hombre'" (click)="cambiarCategoria('Hombre')" href="#sub-categories">
         <div class="category-image-wrapper">
           <img src="https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?q=80&w=600&auto=format&fit=crop"
             alt="Hombre">
@@ -15,9 +15,9 @@
           <h3>Hombre</h3>
           <p>Moda urbana y formal diseñada para destacar en cualquier ocasión.</p>
         </div>
-      </div>
+      </a>
 
-      <div class="category-card" [class.active]="categoriaActiva() === 'Mujer'" (click)="cambiarCategoria('Mujer')">
+      <a class="category-card" [class.active]="categoriaActiva() === 'Mujer'" (click)="cambiarCategoria('Mujer')" href="#sub-categories">
         <div class="category-image-wrapper">
           <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=600&auto=format&fit=crop"
             alt="Mujer">
@@ -26,9 +26,9 @@
           <h3>Mujer</h3>
           <p>Tendencias exclusivas que combinan elegancia, confort y estilo.</p>
         </div>
-      </div>
+      </a>
 
-      <div class="category-card" [class.active]="categoriaActiva() === 'Niños'" (click)="cambiarCategoria('Niños')">
+      <a class="category-card" [class.active]="categoriaActiva() === 'Niños'" (click)="cambiarCategoria('Niños')" href="#sub-categories">
         <div class="category-image-wrapper">
           <img src="https://images.unsplash.com/photo-1503944583218-e16e632b694b?q=80&w=600&auto=format&fit=crop"
             alt="Niños">
@@ -37,7 +37,7 @@
           <h3>Niños</h3>
           <p>Prendas cómodas, resistentes y llenas de color para su día a día.</p>
         </div>
-      </div>
+      </a>
 
     </div>
   </div>
@@ -73,7 +73,7 @@
     <main class="products-main">
 
       <!-- Subcategorías Superiores (Pills horizontales) -->
-      <div class="subcategories-bar">
+      <div id="sub-categories" class="subcategories-bar">
         @for (sub of subcategoriasDisponibles; track sub) {
         <button [class.active]="subcategoriaActiva() === sub" (click)="filtrarSubcategoria(sub)">
           {{ sub }}
