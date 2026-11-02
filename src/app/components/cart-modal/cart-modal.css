@@ -18,11 +18,11 @@
   visibility: visible;
 }
 
-/* Drawer lateral derecho */
+/* Drawer lateral derecho (Corregido para evitar desbordes y swipe indeseado) */
 .cart-drawer {
   position: fixed;
   top: 0;
-  right: -420px;
+  right: -100%; /* Cambiado a -100% para cubrir correctamente cualquier pantalla mobile sin overflow */
   width: 100%;
   max-width: 400px;
   height: 100vh;
