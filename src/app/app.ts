@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { Navbar } from './components/navbar/navbar';
 import { Footer } from './components/footer/footer';
 import { CartModalComponent } from './components/cart-modal/cart-modal';
+import { CartService } from './services/cart'; // Ajusta la ruta si es necesario
 import AOS from 'aos';
 
 @Component({
@@ -13,13 +14,16 @@ import AOS from 'aos';
   styleUrl: './app.css',
 })
 export class AppComponent implements OnInit {
+  
+  // Usamos el constructor para inyectar el servicio de forma pública
+  constructor(public cartService: CartService) {}
+
   ngOnInit() {
     AOS.init({
-      duration: 800, // Duración de la animación en ms (suave y elegante)
-      easing: 'ease-out-cubic', // Curva de aceleración profesional
-      once: true, // Se anima solo la primera vez que haces scroll para no marear
-      offset: 50, // Margen de activación
+      duration: 800,
+      easing: 'ease-out-cubic',
+      once: true,
+      offset: 50,
     });
   }
-  // AppComponent solo se encarga del shell global (Navbar + Router + Footer)
 }

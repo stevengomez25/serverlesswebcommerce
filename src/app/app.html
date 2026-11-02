@@ -1,4 +1,10 @@
 <app-navbar />
-<!-- Aquí se renderizará automáticamente el Home o el MeetUs según la URL -->
 <router-outlet />
+
+<!-- Usando la señal directamente del servicio inyectado -->
+<app-cart-modal 
+  [isOpen]="cartService.isCartOpen()" 
+  (closeModal)="cartService.closeCart()" 
+/>
+
 <app-footer />

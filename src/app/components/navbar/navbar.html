@@ -18,7 +18,8 @@
         </button>
 
         <!-- Minimodal / Mega Menú (Siempre en el DOM para permitir la animación suave) -->
-        <div class="mega-menu" [class.show]="isDropdownOpen()" (mouseenter)="isDropdownOpen.set(true)" (mouseleave)="closeDropdown()">
+        <div class="mega-menu" [class.show]="isDropdownOpen()" (mouseenter)="isDropdownOpen.set(true)"
+          (mouseleave)="closeDropdown()">
           <div class="mega-menu-content">
             <div class="mega-menu-categories">
               <button [class.active]="categoriaHover() === 'Hombre'" (mouseenter)="setHoverCategory('Hombre')"
@@ -55,7 +56,7 @@
 
     <!-- Iconos de Acceso / Carrito y Botón Estilo Referencia -->
     <div class="navbar-actions" data-aos="fade-left" data-aos-delay="200">
-      <button class="btn-cart-trigger" (click)="openCart()" aria-label="Abrir carrito">
+      <button class="btn-cart-trigger" (click)="cartService.openCart()" aria-label="Abrir carrito">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="8" cy="21" r="1" />
@@ -76,6 +77,5 @@
         ☰
       </button>
     </div>
-    <app-cart-modal [isOpen]="isCartOpen()" (closeModal)="closeCart()" />
   </div>
 </header>

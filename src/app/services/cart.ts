@@ -76,4 +76,14 @@ export class CartService {
 
     window.open(whatsappUrl, '_blank');
   }
+
+  isCartOpen = signal(false);
+
+  openCart() {
+    this.isCartOpen.set(true);
+  }
+
+  closeCart() {
+    this.isCartOpen.set(false);
+  }
 }
