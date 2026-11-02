@@ -77,13 +77,13 @@
   transform: rotate(180deg);
 }
 
-/* Minimodal Mega Menu Estilo Minimal con Transición Suave y Profesional */
+/* Minimodal Mega Menu Estilo Minimal con Transición Suave y Orgánica */
 .mega-menu {
   position: absolute;
   top: 100%;
   left: 50%;
-  transform: translateX(-50%) translateY(10px);
-  padding-top: 10px;
+  transform: translateX(-50%) translateY(12px); /* Empieza un poco más abajo */
+  padding-top: 12px;
   background: transparent;
   display: flex;
   width: 460px;
@@ -91,18 +91,19 @@
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
+  /* Transición ultra suave tipo curva bezier */
   transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
               transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
               visibility 0.3s ease;
 }
 
-/* Activación por Hover y por control de Angular */
+/* Se activa tanto por el hover nativo como por la clase .show que controla Angular */
 .dropdown-wrapper:hover .mega-menu,
-.dropdown-wrapper .mega-menu[style*="block"] {
+.mega-menu.show {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
-  transform: translateX(-50%) translateY(0);
+  transform: translateX(-50%) translateY(0); /* Sube suavemente a su posición final */
 }
 
 .mega-menu-content {
