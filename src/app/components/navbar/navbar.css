@@ -74,18 +74,31 @@
 .arrow.rotate {
   transform: rotate(180deg);
 }
-
-/* Minimodal Mega Menu Estilo Minimal */
+/* Minimodal Mega Menu Estilo Minimal con Transición Suave y Profesional */
 .mega-menu {
   position: absolute;
   top: 100%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateY(8px);
   padding-top: 12px;
   background: transparent;
   display: flex;
   width: 460px;
   z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
+              visibility 0.25s ease;
+}
+
+/* Activa la animación suave cuando el dropdown tiene el hover o Angular lo renderiza */
+.dropdown-wrapper:hover .mega-menu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
 }
 
 .mega-menu-content {
