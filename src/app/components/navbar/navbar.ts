@@ -12,16 +12,10 @@ import { CartService } from '../../services/cart';
   styleUrl: './navbar.css',
 })
 export class Navbar {
-  isCartOpen = signal(false);
+
   cartService = inject(CartService);
 
-  openCart() {
-    this.isCartOpen.set(true);
-  }
 
-  closeCart() {
-    this.isCartOpen.set(false);
-  }
   // Control de visibilidad del minimodal "¿Qué ofrecemos?" en desktop y mobile
   isDropdownOpen = signal<boolean>(false);
   // Control del menú hamburguesa para dispositivos móviles

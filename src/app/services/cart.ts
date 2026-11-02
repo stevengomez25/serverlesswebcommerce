@@ -86,4 +86,8 @@ export class CartService {
   closeCart() {
     this.isCartOpen.set(false);
   }
+
+  toggleCart() {
+  this.isCartOpen.update(v => !v);
+}
 }
