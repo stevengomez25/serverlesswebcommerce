@@ -2,25 +2,17 @@
   "items": [
     {
       "precio": 35000,
-      "slug": "cv000000001",
       "colores": [
-        "Verde",
-        "Amarillo",
-        "Fucsia",
-        "negro"
+        "variados"
       ],
-      "categoria": "Hombre",
+      "categoria": "Mujer",
       "subcategoria": "Camisas y Camisetas",
-      "stock": 300,
-      "title": "Camiseta veraniega",
-      "codigo": "cv000000001",
-      "image": "/assets/uploads/17128323622e1595b65a9d43ea92514bbf55c0b92c_thumbnail_750x999.jpg",
-      "description": "descripcion porfavor funcione ya me voa mataaaaaaaaaaaar",
+      "stock": 100,
+      "title": "Pijamas Para Dama de Navidad",
+      "image": "/assets/uploads/captura-de-pantalla-45-.png",
+      "description": "PIJAMA DE DAMA EN MOTIVOS DE NAVIDAD TELA ALGODON DOS PIESAS",
       "tallas": [
-        "W",
-        "M",
-        "XL",
-        "2XL"
+        "M-L  y L-XL"
       ]
     }
   ]
