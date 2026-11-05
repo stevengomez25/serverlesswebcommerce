@@ -2,6 +2,7 @@
   "items": [
     {
       "precio": 35000,
+      "slug": "123456",
       "colores": [
         "variados"
       ],
@@ -9,7 +10,8 @@
       "subcategoria": "Camisas y Camisetas",
       "stock": 100,
       "title": "Pijamas Para Dama de Navidad",
-      "image": "/assets/uploads/captura-de-pantalla-45-.png",
+      "codigo": "PM000001",
+      "image": "/assets/uploads/gemini_generated_image_adobs8adobs8adob.jpg",
       "description": "PIJAMA DE DAMA EN MOTIVOS DE NAVIDAD TELA ALGODON DOS PIESAS",
       "tallas": [
         "M-L  y L-XL"
